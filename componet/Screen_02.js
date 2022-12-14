@@ -1,6 +1,26 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { useEffect, useState } from "react";
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import Item from "./Item";
 
 export default function Screen02({ onPress }) {
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    await fetch("https://63452f62dcae733e8feb7e5f.mockapi.io/todos")
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const renderItem = ({ item }) => <Item item={item} />;
+
   return (
     <View style={{ flex: 1, paddingHorizontal: 10, paddingTop: 40 }}>
       <View>
@@ -95,6 +115,9 @@ export default function Screen02({ onPress }) {
         >
           <Text style={{ fontSize: 18 }}>We recommended</Text>
         </TouchableOpacity>
+      </View>
+      <View style={{ flex: 1 }}>
+        <FlatList data={data} renderItem={renderItem} numColumns="2" />
       </View>
     </View>
   );
