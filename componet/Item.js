@@ -2,7 +2,7 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 
 export default function Item({ item, onPress }) {
   return (
-    <View style={{ marginVertical: 10 }}>
+    <TouchableOpacity style={{ marginVertical: 10 }} onPress={onPress}>
       <View
         style={{
           width: 160,
@@ -19,6 +19,6 @@ export default function Item({ item, onPress }) {
           {item.price}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }

@@ -19,7 +19,7 @@ export default function Screen02({ onPress }) {
     getData();
   }, []);
 
-  const renderItem = ({ item }) => <Item item={item} />;
+  const renderItem = ({ item }) => <Item item={item} onPress={onPress} />;
 
   return (
     <View style={{ flex: 1, paddingHorizontal: 10, paddingTop: 40 }}>
